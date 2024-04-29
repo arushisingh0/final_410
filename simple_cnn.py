@@ -7,7 +7,7 @@ from pyspark.ml.pipeline import Pipeline, PipelineModel
 from sparktorch import PysparkPipelineWrapper
 import torch
 import torch.nn as nn
-from examples.cnn_network import Net
+from cnn_network import Net
 
 
 if __name__ == '__main__':
@@ -17,7 +17,7 @@ if __name__ == '__main__':
         .getOrCreate()
 
     # Read in mnist_train.csv dataset
-    df = spark.read.option("inferSchema", "true").csv('examples/mnist_train.csv').orderBy(rand()).repartition(2)
+    df = spark.read.option("inferSchema", "true").csv('../mnist_train.csv').orderBy(rand()).repartition(2)
 
     network = Net()
 
